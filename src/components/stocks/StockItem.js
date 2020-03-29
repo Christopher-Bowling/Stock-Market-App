@@ -5,7 +5,7 @@ import StocksContext from '../../context/stocks/stocksContext';
 const StockItem = ({ stock: { symbol, name, price, changesPercentage } }) => {
   const stocksContext = useContext(StocksContext);
 
-  const { editOpen } = stocksContext;
+  const { editOpen, deleteStock } = stocksContext;
 
   let changesBoxColor;
   // Dynamically change color
@@ -22,7 +22,7 @@ const StockItem = ({ stock: { symbol, name, price, changesPercentage } }) => {
       <li className='row'>
         {editOpen === true ? (
           <div className='col s1'>
-            <a className='btn-floating red' style={{ marginTop: '35px' }}>
+            <a className='btn-floating red' onClick={() => deleteStock(symbol)} style={{ marginTop: '35px' }}>
               <i class='material-icons'>remove</i>
             </a>
           </div>

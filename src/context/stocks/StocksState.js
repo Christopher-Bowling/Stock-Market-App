@@ -2,7 +2,7 @@ import React, { useReducer } from 'react';
 import axios from 'axios';
 import StocksContext from './stocksContext';
 import StocksReducer from './stockReducer';
-import { SET_LOADING, ADD_STOCK, EDIT_TOGGLE } from '../types';
+import { SET_LOADING, ADD_STOCK, EDIT_TOGGLE, DELETE_STOCK } from '../types';
 
 const StocksState = props => {
   const initialState = {
@@ -79,6 +79,14 @@ const StocksState = props => {
 
     }
 
+  // Delete Stock
+  const deleteStock = sym => {
+    dispatch({
+      type: DELETE_STOCK,
+      payload: sym
+    })
+  }
+
   // Edit Toggle
   const editToggle = () => {
     dispatch({
@@ -97,7 +105,8 @@ const StocksState = props => {
       error: state.error,
       setLoading,
       addStock,
-      editToggle
+      editToggle,
+      deleteStock
   }}>{props.children}</StocksContext.Provider>;
 };
 
