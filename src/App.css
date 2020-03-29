@@ -1,11 +1,15 @@
-/* body {
+/* Global Styles */
+body {
     background-color: black;
-} */
+}
+
+.pointer {
+    cursor: pointer;
+}
 
 /* Stock Item Styles */
 
 .percentStyles {
-    background-color: green;
     color: white;
     text-align: center;
     padding: 8px;

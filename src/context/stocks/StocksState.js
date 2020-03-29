@@ -1,7 +1,8 @@
 import React, { useReducer } from 'react';
+import axios from 'axios';
 import StocksContext from './stocksContext';
-import StocksReducer from './stocksContext';
-import { SET_LOADING } from '../types';
+import StocksReducer from './stockReducer';
+import { SET_LOADING, ADD_STOCK, EDIT_TOGGLE } from '../types';
 
 const StocksState = props => {
   const initialState = {
@@ -55,7 +56,9 @@ const StocksState = props => {
         timestamp: 1585321880
       }
     ],
-    loading: false
+    editOpen: false,
+    loading: false,
+    error: null
   };
 
   const [state, dispatch] = useReducer(StocksReducer, initialState);
@@ -63,14 +66,38 @@ const StocksState = props => {
   // Search Stocks
 
   // Add Stock
+  const addStock = async sym => {
+
+      const res = await axios.get(`https://financialmodelingprep.com/api/v3/quote/${sym}`);
+
+      console.log(res.data[0]);
+
+      dispatch({
+        type: ADD_STOCK,
+        payload: res.data[0]
+      }); 
+
+    }
+
+  // Edit Toggle
+  const editToggle = () => {
+    dispatch({
+      type: EDIT_TOGGLE
+    })
+  }
 
   // Set Loading
   const setLoading = () => dispatch({ type: SET_LOADING });
 
-  return <StocksContext.Provider value={{
+  return <StocksContext.Provider 
+    value={{
       stocks: state.stocks,
+      editOpen: state.editOpen,
       loading: state.loading,
-      setLoading
+      error: state.error,
+      setLoading,
+      addStock,
+      editToggle
   }}>{props.children}</StocksContext.Provider>;
 };
 
