@@ -40,6 +40,8 @@ export const getDate = () => {
       case 11:
         month = 'December';
         break;
+      default:
+        month = 'January';
     }
   
     return month + ' ' + day;

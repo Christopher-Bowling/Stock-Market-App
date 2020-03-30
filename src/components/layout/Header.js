@@ -1,4 +1,4 @@
-import React, { useContext, useReducer, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { getDate } from './getDate';
 import StocksContext from '../../context/stocks/stocksContext';
 
@@ -27,7 +27,7 @@ const Header = () => {
         </h4>
       </div>
       <div className='col s6 right-align'>
-        <a className='blue-text pointer' onClick={editToggle}>
+        <a href="!#" className='blue-text pointer' onClick={editToggle}>
           <h5>{toggleBtn}</h5>
         </a>
       </div>

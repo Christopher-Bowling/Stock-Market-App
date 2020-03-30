@@ -14,17 +14,21 @@ const Search = () => {
     if (text === '') {
       alert('Please enter something');
     } else {
-      stocksContext.addStock(text);
+      stocksContext.addStock(text.toUpperCase());
       setText('');
     }
-  }
+  };
 
   return (
     <Fragment>
       <div>
         <div className='col s12'>
           <nav
-            style={{ marginBottom: '0px', paddingBottom: '0px', borderRadius: '8px' }}
+            style={{
+              marginBottom: '0px',
+              paddingBottom: '0px',
+              borderRadius: '8px'
+            }}
             className='grey darken-3'
           >
             <div className='nav-wrapper'>
@@ -51,7 +55,11 @@ const Search = () => {
       </div>
       <div className='row'>
         <div>
-          <button className='blue darken-4 btn-large' onClick={onAdd} style={styles.btnStyles}>
+          <button
+            className='blue darken-4 btn-large'
+            onClick={onAdd}
+            style={styles.btnStyles}
+          >
             Add Stock
           </button>
         </div>
@@ -67,7 +75,7 @@ const styles = {
     marginBottom: '0px',
     borderRadius: '5px',
     width: '100%'
-  },
+  }
 };
 
 export default Search;
