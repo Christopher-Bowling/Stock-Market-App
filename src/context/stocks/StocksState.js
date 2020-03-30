@@ -2,7 +2,7 @@ import React, { useReducer } from 'react';
 import axios from 'axios';
 import StocksContext from './stocksContext';
 import StocksReducer from './stockReducer';
-import { SET_LOADING, ADD_STOCK, EDIT_TOGGLE, DELETE_STOCK } from '../types';
+import { SET_LOADING, ADD_STOCK, EDIT_TOGGLE, DELETE_STOCK, CHANGE_TOGGLE } from '../types';
 
 const StocksState = props => {
   const initialState = {
@@ -57,6 +57,7 @@ const StocksState = props => {
       }
     ],
     editOpen: false,
+    changeBool: false,
     loading: false,
     error: null
   };
@@ -94,6 +95,13 @@ const StocksState = props => {
     })
   }
 
+  // Changes/ChangesPercentage Toggle Handler
+  const changeBoolHandler = () => {
+    dispatch({
+      type: CHANGE_TOGGLE
+    })
+  }
+
   // Set Loading
   const setLoading = () => dispatch({ type: SET_LOADING });
 
@@ -101,12 +109,14 @@ const StocksState = props => {
     value={{
       stocks: state.stocks,
       editOpen: state.editOpen,
+      changeBool: state.changeBool,
       loading: state.loading,
       error: state.error,
       setLoading,
       addStock,
       editToggle,
-      deleteStock
+      deleteStock,
+      changeBoolHandler
   }}>{props.children}</StocksContext.Provider>;
 };
 

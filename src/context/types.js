@@ -3,3 +3,4 @@ export const STOCK_ERROR = 'STOCK_ERROR';
 export const ADD_STOCK = 'ADD_STOCK';
 export const EDIT_TOGGLE = 'EDIT_TOGGLE';
 export const DELETE_STOCK = 'DELETE_STOCK';
+export const CHANGE_TOGGLE = 'CHANGE_TOGGLE';

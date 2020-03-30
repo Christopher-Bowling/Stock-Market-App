@@ -1,4 +1,4 @@
-import { SET_LOADING, ADD_STOCK, EDIT_TOGGLE, DELETE_STOCK } from '../types';
+import { SET_LOADING, ADD_STOCK, EDIT_TOGGLE, DELETE_STOCK, CHANGE_TOGGLE } from '../types';
 
 export default (state, action) => {
   switch (action.type) {
@@ -7,6 +7,11 @@ export default (state, action) => {
         ...state,
         stocks: [...state.stocks, action.payload]
       };
+    case CHANGE_TOGGLE:
+      return {
+        ...state,
+        changeBool: !state.changeBool
+      }
     case DELETE_STOCK:
       return {
         ...state,
