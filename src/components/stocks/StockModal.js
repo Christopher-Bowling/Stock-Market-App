@@ -5,7 +5,6 @@ const StockModal = ({ stock, changesBoxColor }) => {
     symbol,
     name,
     price,
-    change,
     changesPercentage,
     dayLow,
     dayHigh,
@@ -28,22 +27,27 @@ const StockModal = ({ stock, changesBoxColor }) => {
       style={styles.modalStyles}
     >
       <div className='modal-content'>
-        <div className='row' style={{ marginBottom: '0px' }}>
-          <div className='col s3 m2 white-text'>
-            <h3>{symbol}</h3>
+        <div className='row' style={{ marginBottom: '0px', display: 'flex', justifyContent: 'space-between' }}>
+          <div className="col s11" style={{display: 'flex'}}>
+            <div className='white-text center-align' style={{marginRight: '20px'}}>
+                <h3>{symbol}</h3>
+              </div>
+              <div className='grey-text center-align'>
+                <h5 style={styles.marginTopAuto}>{name}</h5>
+              </div>
           </div>
-          <div className='col s3 grey-text'>
-            <h5 style={styles.marginTopAuto}>{name}</h5>
+          <div className="col s1">
+            <a
+              href='!#'
+              className='modal-action modal-close waves-effect right grey-text'
+            >
+              <i className='material-icons'>close</i>
+            </a>
           </div>
-          <a
-            href='!#'
-            className='modal-action modal-close waves-effect right grey-text'
-          >
-            <i className='material-icons'>close</i>
-          </a>
+      
         </div>
         <div className='row' style={{ margin: '0px' }}>
-          <h5 className="col white-text">{price}</h5>
+          <h5 className='col white-text'>{price}</h5>
           <div className='col s3 grey-text'>
             <h5 className={`${changesBoxColor}-text`}>{changesPercentage}%</h5>
           </div>

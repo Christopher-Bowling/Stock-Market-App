@@ -1,19 +1,27 @@
 import React, { useContext } from 'react';
 import StockItem from './StockItem';
 import StocksContext from '../../context/stocks/stocksContext';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
+import '../../App.css';
 
 const Stocks = () => {
-    const stocksContext = useContext(StocksContext);
+  const stocksContext = useContext(StocksContext);
 
-    const { stocks } = stocksContext;
+  const { stocks, showHeaderNavbar } = stocksContext;
 
-    return (
-        <div>
-            {stocks.map(stock => (
-                    <StockItem key={stock.symbol} stock={stock} />
-            ))}
-        </div>
-    )
-}
+  let styles = showHeaderNavbar ? {} : { opacity: '.35' };
 
-export default Stocks
+  return (
+    <div style={styles}>
+      <TransitionGroup>
+        {stocks.map(stock => (
+          <CSSTransition key={stock.symbol} timeout={5000} classNames="item">
+            <StockItem stock={stock} />
+          </CSSTransition>
+        ))}
+      </TransitionGroup>
+    </div>
+  );
+};
+
+export default Stocks;

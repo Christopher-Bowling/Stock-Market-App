@@ -1,18 +1,38 @@
-import React from 'react';
+import React, {Fragment, useContext} from 'react';
 import './App.css';
 import Header from './components/layout/Header';
 import Search from './components/layout/Search';
-import StocksState from './context/stocks/StocksState';
 import Stocks from './components/stocks/Stocks';
+import { Route, BrowserRouter } from 'react-router-dom';
+import StocksContext from './context/stocks/stocksContext';
 
 const App = () => {
-  return <div>
-    <StocksState>
-      <Header />
-      <Search />
-      <Stocks />
-    </StocksState>
-  </div>;
+  const stocksContext = useContext(StocksContext);
+
+  const { showHeaderNavbar, stateText } = stocksContext;
+
+  const header = () => {
+    return <Fragment>
+      {showHeaderNavbar ? <Header /> : null}
+    </Fragment>
+  };
+  const stocks = () => {
+    return <Fragment>
+      {!stateText ? <Stocks /> : null}
+    </Fragment>
+  }
+    
+
+
+  return (
+    <div>
+        <BrowserRouter>
+          <Route path='/' component={header} />
+          <Search />
+          <Route path='/' component={stocks} />
+        </BrowserRouter>
+    </div>
+  );
 };
 
 // class App extends Component {
@@ -43,8 +63,6 @@ const App = () => {
 //         console.log(err);
 //       });
 //   }
-
-  
 
 //   render() {
 //     var { isLoaded, stocks } = this.state;
